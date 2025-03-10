@@ -18,8 +18,17 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
 
     // check if user is already registered;
+    const exitingUser = await User.findOne({ email });
+
+    if (exitingUser) {
+      return NextResponse.json(
+        { error: "User already registered" },
+        { status: 400 }
+      );
+    }
 
 
+    // create new user;
     
 
 
