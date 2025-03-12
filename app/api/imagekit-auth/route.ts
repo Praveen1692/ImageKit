@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+
 import ImageKit from "imagekit";
 
 import { NextResponse } from "next/server";
@@ -11,19 +12,12 @@ const imagekit = new ImageKit({
 });
 
 export async function GET() {
-
-
-    try {
-        
-    } catch (error) {
-
-        return NextResponse.json({error:"imagekit auth failed"},{status:500});
-        
-    }
-
-
-
-
-
-  return NextResponse.json(imagekit.getAuthenticationParameters());
+  try {
+    return NextResponse.json(imagekit.getAuthenticationParameters());
+  } catch (error) {
+    return NextResponse.json(
+      { error: "imagekit auth failed" },
+      { status: 500 }
+    );
+  }
 }
